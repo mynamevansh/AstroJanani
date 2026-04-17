@@ -13,7 +13,9 @@ app.use(express.json({ limit: "100kb" }));
 app.get("/health", (req, res) => {
   res.status(200).json({ success: true, data: { status: "ok" } });
 });
-
+app.get("/", (req, res) => {
+  res.send("AstroJanani Backend is Live 🚀");
+});
 const prisma = require("./config/prisma");
 
 app.get("/test-db", async (req, res) => {
