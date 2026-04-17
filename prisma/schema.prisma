@@ -13,17 +13,17 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(cuid())
+  id         Int       @id @default(autoincrement())
   name       String
-  email      String   @unique
+  email      String    @unique
   password   String
   zodiacSign String
   dob        DateTime?
-  createdAt  DateTime @default(now())
+  createdAt  DateTime  @default(now())
 }
 
 model Horoscope {
-  id          String   @id @default(cuid())
+  id          Int      @id @default(autoincrement())
   zodiacSign  String
   date        DateTime
   shortText   String
