@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  password   String
+  zodiacSign String
+  dob        DateTime?
+  createdAt  DateTime @default(now())
+}
+
+model Horoscope {
+  id          String   @id @default(cuid())
+  zodiacSign  String
+  date        DateTime
+  shortText   String
+  fullText    String
+  luckyNumber Int
+  luckyColor  String
+  createdAt   DateTime @default(now())
+
+  @@unique([zodiacSign, date])
+  @@index([date, zodiacSign])
+}
